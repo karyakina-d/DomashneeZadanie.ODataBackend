@@ -22,19 +22,19 @@ CREATE TABLE "ServiceRequest"
 
 	"Number" NUMBER(10) NULL,
 
-	"Date" DATE NULL,
+	"Date" Date NULL,
 
 	"Status" NVARCHAR2(9) NULL,
 
-	"PermanentAddress" NVARCHAR2(255) NULL,
+	"PermanentAddress" String NULL,
 
-	"PhoneNumber" NVARCHAR2(255) NULL,
+	"PhoneNumber" String NULL,
 
-	"INN" NVARCHAR2(255) NULL,
+	"INN" String NULL,
 
 	"ServiceRequestDecision" NVARCHAR2(9) NULL,
 
-	"DecisionDate" DATE NULL,
+	"DecisionDate" Date NULL,
 
 	"ProfessionD" RAW(16) NOT NULL,
 
@@ -51,11 +51,11 @@ CREATE TABLE "Patent"
 
 	"Series" NVARCHAR2(255) NULL,
 
-	"ValidUntil" DATE NULL,
-
 	"Number" NVARCHAR2(255) NULL,
 
-	"IssueDate" DATE NULL,
+	"ValidUntil" date NULL,
+
+	"IssueDate" date NULL,
 
 	"Profession_m0" RAW(16) NOT NULL,
 
@@ -70,21 +70,21 @@ CREATE TABLE "Passport"
 
 	"primaryKey" RAW(16) NOT NULL,
 
-	"FirstNameLat" NVARCHAR2(255) NULL,
-
 	"LastNameLat" NVARCHAR2(255) NULL,
+
+	"FirstNameLat" NVARCHAR2(255) NULL,
 
 	"SecondNameLat" NVARCHAR2(255) NULL,
 
 	"Sex" NVARCHAR2(255) NULL,
 
-	"DateOfBirth" DATE NULL,
+	"DateOfBirth" Date NULL,
 
 	"PlaceOfBirth" NVARCHAR2(255) NULL,
 
-	"DateOfIssue" DATE NULL,
+	"DateOfIssue" Date NULL,
 
-	"ValidUntil" DATE NULL,
+	"ValidUntil" Date NULL,
 
 	"NumberSeries" NVARCHAR2(255) NULL,
 
