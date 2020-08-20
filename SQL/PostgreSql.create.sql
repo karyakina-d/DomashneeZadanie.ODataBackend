@@ -1,0 +1,300 @@
+﻿
+
+
+
+
+CREATE TABLE Profession (
+
+ primaryKey UUID NOT NULL,
+
+ Name VARCHAR(255) NULL,
+
+ PRIMARY KEY (primaryKey));
+
+
+
+CREATE TABLE ServiceRequest (
+
+ primaryKey UUID NOT NULL,
+
+ Type VARCHAR(13) NULL,
+
+ Number INT NULL,
+
+ Date DATE NULL,
+
+ Status VARCHAR(9) NULL,
+
+ PermanentAddress STRING NULL,
+
+ PhoneNumber STRING NULL,
+
+ INN STRING NULL,
+
+ ServiceRequestDecision VARCHAR(9) NULL,
+
+ DecisionDate DATE NULL,
+
+ ProfessionD UUID NOT NULL,
+
+ Passport UUID NOT NULL,
+
+ PRIMARY KEY (primaryKey));
+
+
+
+CREATE TABLE Patent (
+
+ primaryKey UUID NOT NULL,
+
+ Series VARCHAR(255) NULL,
+
+ Number VARCHAR(255) NULL,
+
+ ValidUntil DATE NULL,
+
+ IssueDate DATE NULL,
+
+ Profession_m0 UUID NOT NULL,
+
+ ServiceRequest_m0 UUID NOT NULL,
+
+ PRIMARY KEY (primaryKey));
+
+
+
+CREATE TABLE Passport (
+
+ primaryKey UUID NOT NULL,
+
+ LastNameLat VARCHAR(255) NULL,
+
+ FirstNameLat VARCHAR(255) NULL,
+
+ SecondNameLat VARCHAR(255) NULL,
+
+ Sex VARCHAR(255) NULL,
+
+ DateOfBirth DATE NULL,
+
+ PlaceOfBirth VARCHAR(255) NULL,
+
+ DateOfIssue DATE NULL,
+
+ ValidUntil DATE NULL,
+
+ NumberSeries VARCHAR(255) NULL,
+
+ Country VARCHAR(5) NULL,
+
+ PRIMARY KEY (primaryKey));
+
+
+
+CREATE TABLE STORMNETLOCKDATA (
+
+ LockKey VARCHAR(300) NOT NULL,
+
+ UserName VARCHAR(300) NOT NULL,
+
+ LockDate TIMESTAMP(3) NULL,
+
+ PRIMARY KEY (LockKey));
+
+
+
+CREATE TABLE STORMSETTINGS (
+
+ primaryKey UUID NOT NULL,
+
+ Module VARCHAR(1000) NULL,
+
+ Name VARCHAR(255) NULL,
+
+ Value TEXT NULL,
+
+ "User" VARCHAR(255) NULL,
+
+ PRIMARY KEY (primaryKey));
+
+
+
+CREATE TABLE STORMAdvLimit (
+
+ primaryKey UUID NOT NULL,
+
+ "User" VARCHAR(255) NULL,
+
+ Published BOOLEAN NULL,
+
+ Module VARCHAR(255) NULL,
+
+ Name VARCHAR(255) NULL,
+
+ Value TEXT NULL,
+
+ HotKeyData INT NULL,
+
+ PRIMARY KEY (primaryKey));
+
+
+
+CREATE TABLE STORMFILTERSETTING (
+
+ primaryKey UUID NOT NULL,
+
+ Name VARCHAR(255) NOT NULL,
+
+ DataObjectView VARCHAR(255) NOT NULL,
+
+ PRIMARY KEY (primaryKey));
+
+
+
+CREATE TABLE STORMWEBSEARCH (
+
+ primaryKey UUID NOT NULL,
+
+ Name VARCHAR(255) NOT NULL,
+
+ "Order" INT NOT NULL,
+
+ PresentView VARCHAR(255) NOT NULL,
+
+ DetailedView VARCHAR(255) NOT NULL,
+
+ FilterSetting_m0 UUID NOT NULL,
+
+ PRIMARY KEY (primaryKey));
+
+
+
+CREATE TABLE STORMFILTERDETAIL (
+
+ primaryKey UUID NOT NULL,
+
+ Caption VARCHAR(255) NOT NULL,
+
+ DataObjectView VARCHAR(255) NOT NULL,
+
+ ConnectMasterProp VARCHAR(255) NOT NULL,
+
+ OwnerConnectProp VARCHAR(255) NULL,
+
+ FilterSetting_m0 UUID NOT NULL,
+
+ PRIMARY KEY (primaryKey));
+
+
+
+CREATE TABLE STORMFILTERLOOKUP (
+
+ primaryKey UUID NOT NULL,
+
+ DataObjectType VARCHAR(255) NOT NULL,
+
+ Container VARCHAR(255) NULL,
+
+ ContainerTag VARCHAR(255) NULL,
+
+ FieldsToView VARCHAR(255) NULL,
+
+ FilterSetting_m0 UUID NOT NULL,
+
+ PRIMARY KEY (primaryKey));
+
+
+
+CREATE TABLE UserSetting (
+
+ primaryKey UUID NOT NULL,
+
+ AppName VARCHAR(256) NULL,
+
+ UserName VARCHAR(512) NULL,
+
+ UserGuid UUID NULL,
+
+ ModuleName VARCHAR(1024) NULL,
+
+ ModuleGuid UUID NULL,
+
+ SettName VARCHAR(256) NULL,
+
+ SettGuid UUID NULL,
+
+ SettLastAccessTime TIMESTAMP(3) NULL,
+
+ StrVal VARCHAR(256) NULL,
+
+ TxtVal TEXT NULL,
+
+ IntVal INT NULL,
+
+ BoolVal BOOLEAN NULL,
+
+ GuidVal UUID NULL,
+
+ DecimalVal DECIMAL(20,10) NULL,
+
+ DateTimeVal TIMESTAMP(3) NULL,
+
+ PRIMARY KEY (primaryKey));
+
+
+
+CREATE TABLE ApplicationLog (
+
+ primaryKey UUID NOT NULL,
+
+ Category VARCHAR(64) NULL,
+
+ EventId INT NULL,
+
+ Priority INT NULL,
+
+ Severity VARCHAR(32) NULL,
+
+ Title VARCHAR(256) NULL,
+
+ Timestamp TIMESTAMP(3) NULL,
+
+ MachineName VARCHAR(32) NULL,
+
+ AppDomainName VARCHAR(512) NULL,
+
+ ProcessId VARCHAR(256) NULL,
+
+ ProcessName VARCHAR(512) NULL,
+
+ ThreadName VARCHAR(512) NULL,
+
+ Win32ThreadId VARCHAR(128) NULL,
+
+ Message VARCHAR(2500) NULL,
+
+ FormattedMessage TEXT NULL,
+
+ PRIMARY KEY (primaryKey));
+
+
+
+
+ ALTER TABLE ServiceRequest ADD CONSTRAINT FK146799c910344e90b42809fda6912748 FOREIGN KEY (ProfessionD) REFERENCES Profession; 
+CREATE INDEX Index9340c693ca87b7324270e95ba08d12b67586724a on ServiceRequest (ProfessionD); 
+
+ ALTER TABLE ServiceRequest ADD CONSTRAINT FKc187e3940020421a895c68446e4c5818 FOREIGN KEY (Passport) REFERENCES Passport; 
+CREATE INDEX Indexb69b262ba46cd2d427c91531916fee90beb21fef on ServiceRequest (Passport); 
+
+ ALTER TABLE Patent ADD CONSTRAINT FKa5c6d64ee7224f8cadc9f065ba55f222 FOREIGN KEY (Profession_m0) REFERENCES Profession; 
+CREATE INDEX Indexc9d86e9eaebe2f99ea31416b0e16d11e5f68b910 on Patent (Profession_m0); 
+
+ ALTER TABLE Patent ADD CONSTRAINT FK0f010d6f055145599fc0385465daa39e FOREIGN KEY (ServiceRequest_m0) REFERENCES ServiceRequest; 
+CREATE INDEX Indexf210ce07061ccca1dc62c60612930660f7da61ac on Patent (ServiceRequest_m0); 
+
+ ALTER TABLE STORMWEBSEARCH ADD CONSTRAINT FK11c95dc11504481aaabbd6f225417612 FOREIGN KEY (FilterSetting_m0) REFERENCES STORMFILTERSETTING; 
+
+ ALTER TABLE STORMFILTERDETAIL ADD CONSTRAINT FK2fa875c1b1ed4dea93b71827fe757620 FOREIGN KEY (FilterSetting_m0) REFERENCES STORMFILTERSETTING; 
+
+ ALTER TABLE STORMFILTERLOOKUP ADD CONSTRAINT FK1dce4d45ff2a48f5ae16aba1a58028fc FOREIGN KEY (FilterSetting_m0) REFERENCES STORMFILTERSETTING; 
+
