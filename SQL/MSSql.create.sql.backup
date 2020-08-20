@@ -19,19 +19,19 @@ CREATE TABLE [ServiceRequest] (
 
 	 [Number] INT  NULL,
 
-	 [Date] Date  NULL,
+	 [Date] DATETIME  NULL,
 
 	 [Status] VARCHAR(9)  NULL,
 
-	 [PermanentAddress] String  NULL,
+	 [PermanentAddress] VARCHAR(255)  NULL,
 
-	 [PhoneNumber] String  NULL,
+	 [PhoneNumber] VARCHAR(255)  NULL,
 
-	 [INN] String  NULL,
+	 [INN] VARCHAR(255)  NULL,
 
 	 [ServiceRequestDecision] VARCHAR(9)  NULL,
 
-	 [DecisionDate] Date  NULL,
+	 [DecisionDate] DATETIME  NULL,
 
 	 [ProfessionD] UNIQUEIDENTIFIER  NOT NULL,
 
@@ -46,11 +46,11 @@ CREATE TABLE [Patent] (
 
 	 [Series] VARCHAR(255)  NULL,
 
+	 [ValidUntil] DATETIME  NULL,
+
 	 [Number] VARCHAR(255)  NULL,
 
-	 [ValidUntil] date  NULL,
-
-	 [IssueDate] date  NULL,
+	 [IssueDate] DATETIME  NULL,
 
 	 [Profession_m0] UNIQUEIDENTIFIER  NOT NULL,
 
@@ -63,21 +63,21 @@ CREATE TABLE [Passport] (
 
 	 [primaryKey] UNIQUEIDENTIFIER  NOT NULL,
 
-	 [LastNameLat] VARCHAR(255)  NULL,
-
 	 [FirstNameLat] VARCHAR(255)  NULL,
+
+	 [LastNameLat] VARCHAR(255)  NULL,
 
 	 [SecondNameLat] VARCHAR(255)  NULL,
 
 	 [Sex] VARCHAR(255)  NULL,
 
-	 [DateOfBirth] Date  NULL,
+	 [DateOfBirth] DATETIME  NULL,
 
 	 [PlaceOfBirth] VARCHAR(255)  NULL,
 
-	 [DateOfIssue] Date  NULL,
+	 [DateOfIssue] DATETIME  NULL,
 
-	 [ValidUntil] Date  NULL,
+	 [ValidUntil] DATETIME  NULL,
 
 	 [NumberSeries] VARCHAR(255)  NULL,
 
